@@ -28,10 +28,10 @@ describe('SupermercadoService', () => {
     listaSupermercados = [];
     for(let i = 0; i < 5; i++){
         const supermercado: SupermercadoEntity = await repository.save({
-        nombre: faker.lorem.sentence(),
-        longitud: faker.lorem.sentence(),
-        latitud: faker.address.secondaryAddress(),
-        paginaWeb: faker.address.city()})
+        nombre: faker.company.name(),
+        longitud: faker.address.longitude(),
+        latitud: faker.address.latitude(),
+        paginaWeb: faker.internet.domainName()})
         listaSupermercados.push(supermercado);
     }
   }
@@ -63,10 +63,10 @@ describe('SupermercadoService', () => {
   it('create debe retornar un nuevo supermercado', async () => {
     const supermercado: SupermercadoEntity = {
       id: "",
-      nombre: faker.lorem.sentence(),
-      longitud: faker.lorem.sentence(),
-      latitud: faker.address.secondaryAddress(),
-      paginaWeb: faker.address.city(),
+      nombre: faker.company.name(),
+      longitud: faker.address.longitude(),
+      latitud: faker.address.latitude(),
+      paginaWeb: faker.internet.domainName(),
       ciudades: []
     }
  
