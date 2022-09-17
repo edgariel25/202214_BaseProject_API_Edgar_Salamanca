@@ -21,44 +21,77 @@ findSupermarketFromCity: Obtener un supermercado de una ciudad.
 updateSupermarketsFromCity: Actualizar los supermercados que tiene una ciudad.
 deleteSupermarketFromCity: Eliminar el supermercado que tiene una ciudad.
 */
-async addSupermarketToCity(ciudadId: string, supermercadoId: string): Promise<CiudadEntity> {
-    const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
-    if (!supermercado)
-      throw new BusinessLogicException("El supermercado con el id dado no fue encontrado", BusinessError.NOT_FOUND);
-  
-    const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]})
-    if (!ciudad)
-      throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND);
-
-    if (supermercado.nombre.length < 10 )
-      throw new BusinessLogicException("El nombre del supermercado debe ser de mas de 10 caracteres", BusinessError.BAD_REQUEST);
-
-    ciudad.supermercados = [...ciudad.supermercados, supermercado];
-    return await this.ciudadRepository.save(ciudad);
-  }
-
-async findSupermarketFromCity(ciudadId: string, supermercadoId: string): Promise<SupermercadoEntity> {
-    const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
-    if (!supermercado)
+    async addSupermarketToCity(ciudadId: string, supermercadoId: string): Promise<CiudadEntity> {
+        const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
+        if (!supermercado)
         throw new BusinessLogicException("El supermercado con el id dado no fue encontrado", BusinessError.NOT_FOUND);
-   
-    const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]})
-    if (!ciudad)
+    
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]})
+        if (!ciudad)
         throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND);
 
-    const ciudadSupermercado: SupermercadoEntity = ciudad.supermercados.find(e => e.id === supermercado.id);
+        if (supermercado.nombre.length < 10 )
+        throw new BusinessLogicException("El nombre del supermercado debe ser de mas de 10 caracteres", BusinessError.BAD_REQUEST);
 
-    if (!ciudadSupermercado)
-      throw new BusinessLogicException("El supermercado con el id dado no esta asociado a la ciudad", BusinessError.PRECONDITION_FAILED)
+        ciudad.supermercados = [...ciudad.supermercados, supermercado];
+        return await this.ciudadRepository.save(ciudad);
+    }
 
-    return ciudadSupermercado;
-}
+    async findSupermarketFromCity(ciudadId: string, supermercadoId: string): Promise<SupermercadoEntity> {
+        const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
+        if (!supermercado)
+            throw new BusinessLogicException("El supermercado con el id dado no fue encontrado", BusinessError.NOT_FOUND);
+    
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]})
+        if (!ciudad)
+            throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND);
 
-async findSupermarketsFromCity(ciudadId: string): Promise<SupermercadoEntity[]> {
-    const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
-    if (!ciudad)
-      throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND)
-   
-    return ciudad.supermercados;
-}
+        const ciudadSupermercado: SupermercadoEntity = ciudad.supermercados.find(e => e.id === supermercado.id);
+
+        if (!ciudadSupermercado)
+            throw new BusinessLogicException("El supermercado con el id dado no esta asociado a la ciudad", BusinessError.PRECONDITION_FAILED)
+
+        return ciudadSupermercado;
+    }
+
+    async findSupermarketsFromCity(ciudadId: string): Promise<SupermercadoEntity[]> {
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+        if (!ciudad)
+            throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND)
+    
+        return ciudad.supermercados;
+    }
+
+    async updateSupermarketsFromCity(ciudadId: string, supermercados: SupermercadoEntity[]): Promise<CiudadEntity> {
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+        if (!ciudad)
+            throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND)
+    
+        for (let i = 0; i < supermercados.length; i++) {
+            const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercados[i].id}});
+            if (!supermercado)
+                throw new BusinessLogicException("El supermercado con el id dado no fue encontrado", BusinessError.NOT_FOUND);
+        }
+    
+        ciudad.supermercados = supermercados;
+        return await this.ciudadRepository.save(ciudad);
+      }
+
+    async deleteSupermarketFromCity(ciudadId: string, supermercadoId: string){
+        const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
+            if (!supermercado)
+                throw new BusinessLogicException("El supermercado con el id dado no fue encontrado", BusinessError.NOT_FOUND);
+    
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+            if (!ciudad)
+                throw new BusinessLogicException("La ciudad con el id dado no fue encontrada", BusinessError.NOT_FOUND)
+    
+        const ciudadSupermercado: SupermercadoEntity = ciudad.supermercados.find(e => e.id === supermercado.id);
+    
+        if (!ciudadSupermercado)
+            throw new BusinessLogicException("El supermercado con el id dado no esta asociado a la ciudad", BusinessError.PRECONDITION_FAILED)
+ 
+        ciudad.supermercados = ciudad.supermercados.filter(e => e.id !== supermercadoId);
+        await this.ciudadRepository.save(ciudad);
+    }  
 }
