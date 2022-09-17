@@ -6,6 +6,8 @@ import { CiudadEntity } from './ciudad/ciudad.entity';
 import { CiudadModule } from './ciudad/ciudad.module';
 import { SupermercadoEntity } from './supermercado/supermercado.entity';
 import { SupermercadoModule } from './supermercado/supermercado.module';
+import { CiudadSupermercadoService } from './ciudad-supermercado/ciudad-supermercado.service';
+import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermercado.module';
 
 @Module({
   imports: [CiudadModule, SupermercadoModule,
@@ -23,8 +25,9 @@ import { SupermercadoModule } from './supermercado/supermercado.module';
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true,
-    }),],
+    }),
+    CiudadSupermercadoModule,],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, CiudadSupermercadoService],
 })
 export class AppModule {}
