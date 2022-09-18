@@ -28,6 +28,6 @@ import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermerc
     }),
     CiudadSupermercadoModule,],
   controllers: [AppController],
-  providers: [AppService, CiudadSupermercadoService],
+  providers: [AppService],
 })
 export class AppModule {}
