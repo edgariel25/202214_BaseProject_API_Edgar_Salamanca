@@ -1,0 +1,1107 @@
+{
+	"info": {
+		"_postman_id": "c837d40f-003b-40f5-a8fc-16294d889066",
+		"name": "Ciudad-Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a City (Precondicion)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"cityId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Guayaquil\",\r\n      \"pais\": \"Ecuador\",\r\n      \"habitantes\": 3123000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cities",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add City",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Quito\",\r\n    \"pais\": \"Ecuador\",\r\n    \"habitantes\": 123000,\r\n    \"id\": \"a4d8d50e-708c-49d1-9316-5b90a327f44c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cities",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Quito\",\r\n    \"pais\": \"Ecuador\",\r\n    \"habitantes\": 123000,\r\n    \"id\": \"a4d8d50e-708c-49d1-9316-5b90a327f44c\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add supermarket (Precondicion)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermarketId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Almacen deTodito\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add supermarket",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Almacen deTodito\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Almacen deTodito\",\r\n    \"longitud\": \"40° E\",\r\n    \"latitud\": \"35° N\",\r\n    \"paginaWeb\": \"misitio.com\",\r\n    \"id\": \"f944bde6-36a8-42bb-a429-5fe65d43c4c5\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add supermarket_2 (Precondicion)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermarketId_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Almacen el exito\",\r\n      \"longitud\": \"33° E\",\r\n      \"latitud\": \"64° N\",\r\n      \"paginaWeb\": \"elexito.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add supermarket_2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Almacen el exito\",\r\n    \"longitud\": \"33° E\",\r\n    \"latitud\": \"64° N\",\r\n    \"paginaWeb\": \"elexito.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Almacen el exito\",\r\n    \"longitud\": \"33° E\",\r\n    \"latitud\": \"64° N\",\r\n    \"paginaWeb\": \"elexito.com\",\r\n    \"id\": \"f16ca5ce-1bc6-4706-afd5-0a4e649ea0bf\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add supermarket_3 (Precondicion)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermarketId_3\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Almacen de la esquina\",\r\n      \"longitud\": \"42° E\",\r\n      \"latitud\": \"74° N\",\r\n      \"paginaWeb\": \"sinpagina.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add supermarket_3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Almacen de la esquina\",\r\n    \"longitud\": \"42° E\",\r\n    \"latitud\": \"74° N\",\r\n    \"paginaWeb\": \"sinpagina.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Almacen de la esquina\",\r\n    \"longitud\": \"42° E\",\r\n    \"latitud\": \"74° N\",\r\n    \"paginaWeb\": \"sinpagina.com\",\r\n    \"id\": \"05a20f32-fd18-45aa-8b14-c920bebfd42a\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Supermarket to City",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Supermarket to City",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"4d55e8fd-013e-4bb0-80f7-034eacd392ba\",\r\n    \"nombre\": \"Guayaquil\",\r\n    \"pais\": \"Ecuador\",\r\n    \"habitantes\": 3123000,\r\n    \"supermercados\": [\r\n        {\r\n            \"id\": \"e3264f0e-5ebc-4758-b1e0-cacde1ac5245\",\r\n            \"nombre\": \"Almacen deTodito\",\r\n            \"latitud\": \"35° N\",\r\n            \"longitud\": \"40° E\",\r\n            \"paginaWeb\": \"misitio.com\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Supermarket_2 to City",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"{{supermarketId_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Supermarket_2 to City",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"{{supermarketId_2}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"4d55e8fd-013e-4bb0-80f7-034eacd392ba\",\r\n    \"nombre\": \"Guayaquil\",\r\n    \"pais\": \"Ecuador\",\r\n    \"habitantes\": 3123000,\r\n    \"supermercados\": [\r\n        {\r\n            \"id\": \"e3264f0e-5ebc-4758-b1e0-cacde1ac5245\",\r\n            \"nombre\": \"Almacen deTodito\",\r\n            \"latitud\": \"35° N\",\r\n            \"longitud\": \"40° E\",\r\n            \"paginaWeb\": \"misitio.com\"\r\n        },\r\n        {\r\n            \"id\": \"f16ca5ce-1bc6-4706-afd5-0a4e649ea0bf\",\r\n            \"nombre\": \"Almacen el exito\",\r\n            \"latitud\": \"64° N\",\r\n            \"longitud\": \"33° E\",\r\n            \"paginaWeb\": \"elexito.com\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an invalid Supermarket to City",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an invalid Supermarket to City",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all  Supermarkets from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of supermercados > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all  Supermarkets from city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"a9437a3b-081b-49cd-a249-654f8bf5b235\",\n        \"nombre\": \"Almacen deTodito\",\n        \"latitud\": \"35° N\",\n        \"longitud\": \"40° E\",\n        \"paginaWeb\": \"misitio.com\"\n    },\n    {\n        \"id\": \"d67af47c-0dbe-4e4e-b502-61b8ae2ef080\",\n        \"nombre\": \"Almacen el exito\",\n        \"latitud\": \"64° N\",\n        \"longitud\": \"33° E\",\n        \"paginaWeb\": \"elexito.com\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get one supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get one supermarket from  city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"a9437a3b-081b-49cd-a249-654f8bf5b235\",\n    \"nombre\": \"Almacen deTodito\",\n    \"latitud\": \"35° N\",\n    \"longitud\": \"40° E\",\n    \"paginaWeb\": \"misitio.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get no associated supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no esta asociado a la ciudad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId_3}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"{{supermarketId_3}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get no associated supermarket from  city",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId_3}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"{{supermarketId_3}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 412,\n    \"message\": \"El supermercado con el id dado no esta asociado a la ciudad\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put a supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n        {\r\n        \"nombre\": \"Almacen de la esquina\",\r\n        \"longitud\": \"42° E\",\r\n        \"latitud\": \"74° N\",\r\n        \"paginaWeb\": \"sinpagina.com\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put a supermarket from city",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"nombre\": \"Almacen de la esquina\",\r\n            \"longitud\": \"42° E\",\r\n            \"latitud\": \"74° N\",\r\n            \"paginaWeb\": \"sinpagina.com\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"c567586d-6951-4a52-beec-9cd693d5c7e7\",\n    \"nombre\": \"Guayaquil\",\n    \"pais\": \"Ecuador\",\n    \"habitantes\": 3123000,\n    \"supermercados\": [\n        {\n            \"nombre\": \"Almacen de la esquina\",\n            \"longitud\": \"42° E\",\n            \"latitud\": \"74° N\",\n            \"paginaWeb\": \"sinpagina.com\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Put an invalid supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"id\":\"00000000-0000-0000-0000-000000000000\"}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put an invalid supermarket from city",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Ciudad de Panama(update)\",\r\n      \"pais\": \"Panama\",\r\n      \"habitantes\": 33543000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a supermarket from city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid supermarket from city",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"{{cityId}}",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid supermarket from city",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/cities/{{cityId}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cities",
+								"{{cityId}}",
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "default"
+		}
+	]
+}

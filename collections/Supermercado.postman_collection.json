@@ -1,0 +1,707 @@
+{
+	"info": {
+		"_postman_id": "63e7ba7a-9afe-4a32-a3c4-67a363b11236",
+		"name": "Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermarketId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"Almacen deTodito\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add supermarket",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"Almacen deTodito\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Almacen deTodito\",\r\n    \"longitud\": \"40° E\",\r\n    \"latitud\": \"35° N\",\r\n    \"paginaWeb\": \"misitio.com\",\r\n    \"id\": \"f944bde6-36a8-42bb-a429-5fe65d43c4c5\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add an invalid supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El nombre del supermercado debe ser de mas de 10 caracteres\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"nombre\": \"dUno\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add an invalid supermarket",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"nombre\": \"dUno\",\r\n      \"longitud\": \"40° E\",\r\n      \"latitud\": \"35° N\",\r\n      \"paginaWeb\": \"misitio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 400,\r\n    \"message\": \"El nombre del supermercado debe ser de mas de 10 caracteres\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all supermarkets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of supermercados > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all supermarkets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"f944bde6-36a8-42bb-a429-5fe65d43c4c5\",\n        \"nombre\": \"Almacen deTodito\",\n        \"latitud\": \"35° N\",\n        \"longitud\": \"40° E\",\n        \"paginaWeb\": \"misitio.com\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get one supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get one supermarket",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"f944bde6-36a8-42bb-a429-5fe65d43c4c5\",\n    \"nombre\": \"Almacen deTodito\",\n    \"latitud\": \"35° N\",\n    \"longitud\": \"40° E\",\n    \"paginaWeb\": \"misitio.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get an invalid supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get an invalid supermarket",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El supermercado no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put a supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Almacen a mil (update)\",\r\n    \"latitud\": \"32° N\",\r\n    \"longitud\": \"43° E\",\r\n    \"paginaWeb\": \"emisitio.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put a supermarket",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Almacen a mil (update)\",\r\n    \"latitud\": \"32° N\",\r\n    \"longitud\": \"43° E\",\r\n    \"paginaWeb\": \"emisitio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"f944bde6-36a8-42bb-a429-5fe65d43c4c5\",\n    \"nombre\": \"Almacen a mil (update)\",\n    \"latitud\": \"32° N\",\n    \"longitud\": \"43° E\",\n    \"paginaWeb\": \"emisitio.com\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Put an invalid supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El nombre del supermercado debe ser de mas de 10 caracteres\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"a mil\",\r\n    \"latitud\": \"32° N\",\r\n    \"longitud\": \"43° E\",\r\n    \"paginaWeb\": \"nn-sitio.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Put an invalid supermarket",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"a mil\",\r\n    \"latitud\": \"32° N\",\r\n    \"longitud\": \"43° E\",\r\n    \"paginaWeb\": \"nn-sitio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": \"El nombre del supermercado debe ser de mas de 10 caracteres\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermarketId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete a supermarket",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/{{supermarketId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermarketId}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Delete an invalid supermarket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete an invalid supermarket",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "default"
+		}
+	]
+}
